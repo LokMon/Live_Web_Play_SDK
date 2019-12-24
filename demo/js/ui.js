@@ -498,5 +498,19 @@ function onSocketDisconnect(){
         console.log("socket 断开链接")
     }
 }
+function isChrome() {
+  var ua = navigator.userAgent.toLowerCase();
+  return ua.indexOf("chrome")>1
+}
+//测试mime
+function _mime(option, value) {
+  var mimeTypes = navigator.mimeTypes;
+  for (var mt in mimeTypes) {
+    if (mimeTypes[mt][option] == value) {
+      return true;
+    }
+  }
+  return false;
+}
 
 
