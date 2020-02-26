@@ -220,6 +220,12 @@ var isPlay = false;
 $("#btn-play").click(function () {
     $.DW.play();
 });
+$("#btn-clip").click(function (e) {
+  var  base= $.DW.clipVideoImage();
+  $("#clipImage_down").attr("href",base);
+  $("#clipImage_down")[0].click();
+
+})
 $("#btn-play").mouseover(function () {
     if (isPlay) {
         $(this).css("background", "url(images/newLive/icon-playbar.png) no-repeat -8px -120px");

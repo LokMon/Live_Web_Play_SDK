@@ -119,6 +119,9 @@
                     <li class="switch">
                         <a href="javascript:void(0);" title="切换窗口" class="btn-switch" id="btn-switch"></a>
                     </li>
+                    <li class="switch">
+                        <a href="javascript:void(0);" title="截图" class="btn-rate" id="btn-clip">截图</a>
+                    </li>
                     <li class="fullscreen">
                         <a href="javascript:void(0);" title="网页全屏" class="btn-fullscreen" id="btn-fullscreen"></a>
                     </li>
@@ -218,13 +221,15 @@
         <p class="repeat-content">{{content}}</p>
     </div>
 </script>
+<a id="clipImage_down" style="display: none" download="clip-image.png">askjdhkjh</a>
+<!--<button id="btn-clip">截图/button>-->
 <input type="hidden" value="1" id="documentDisplayMode">
 <script src="js/jquery-1.9.0.min.js"></script>
 <script src="js/handlebars.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/common.js"></script>
 <script src="js/jquery.jslider.js"></script>
-<script src="//view.csslcloud.net/js/sdk/3.1.0/playbackSDK.js"></script>
+<script src="//view.csslcloud.net/js/sdk/3.2.0/playbackSDK.js?v=20200207"></script>
 <script src="js/ui.js"></script>
 <script src="js/callback.pc.extend.js"></script>
 <script type="text/javascript">

@@ -34,9 +34,5 @@
             }
         }
     };
-
-
-    $(function () {
-        FlashTip.init();
-    });
+    window.flashTip= FlashTip;
 })(jQuery, window, document, undefined);
