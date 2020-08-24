@@ -270,13 +270,13 @@ function chatSend() {
 
   } else {
 
-    if(!touserid)return
+    if (!touserid) return
     DWLive.sendPrivateChatMsg(touserid, touserName, msg) // 发送私聊
 
   }
 
-  // $("#chat_input").val("").focus();
   $('#chat_input').val('')
+
 }
 
 function qaSend() {
@@ -362,15 +362,15 @@ DWLive.onStartRollCall = function (data) {
   $('.signtxt').html('签到倒计时: <span id="signtime">00:00</span>').css('margin-top', '75px')
   $('.signbtn button').show()
   $('#signtime').text(timeFormat(time))
-  $('.video-box').css({'width': 1, 'height': 1})
+  $('.video-box').css({ 'width': 1, 'height': 1 })
   $('.sign').show()
   $('.signbtn button').click(function () {
     DWLive.answerRollcall(rid, pid)
     $('.sign').hide()
 
-    $('.video-box').css({'width': '100%', 'height': '100%'})
+    $('.video-box').css({ 'width': '100%', 'height': '100%' })
     if ($('.vote').is(':visible') || $('.mask').is(':visible')) {
-      $('.video-box').css({'width': 1, 'height': 1})
+      $('.video-box').css({ 'width': 1, 'height': 1 })
     }
     if (window.ROLLCALL_INTERVAL_TIMER > 0) {
       clearInterval(window.ROLLCALL_INTERVAL_TIMER)
@@ -387,9 +387,9 @@ DWLive.onStartRollCall = function (data) {
       $('.signbtn button').hide()
       setTimeout(function () {
         $('.sign').hide()
-        $('.video-box').css({'width': '100%', 'height': '100%'})
+        $('.video-box').css({ 'width': '100%', 'height': '100%' })
         if ($('.vote').is(':visible') || $('.mask').is(':visible')) {
-          $('.video-box').css({'width': 1, 'height': 1})
+          $('.video-box').css({ 'width': 1, 'height': 1 })
         }
       }, 2000)
       if (window.ROLLCALL_INTERVAL_TIMER > 0) {
@@ -418,7 +418,7 @@ var win = false,
 DWLive.onStartLottery = function () {
   stop = false
   $('.lottery').show()
-  $('.video-box').css({'width': 1, 'height': 1})
+  $('.video-box').css({ 'width': 1, 'height': 1 })
   $('.lotterybox').hide()
   if (win == true) {
     $('.lotteryh3').html('恭喜您中奖啦')
@@ -431,7 +431,7 @@ DWLive.onStartLottery = function () {
 DWLive.onWinLottery = function (data) {
   var code = data.lotteryCode,
     name = data.viewerName
-  $('.video-box').css({'width': 1, 'height': 1})
+  $('.video-box').css({ 'width': 1, 'height': 1 })
   if (data.viewerId == DWLive.viewerid) {
     $('.lotterynum').html(code)
     $('.lotterybox').hide()
@@ -462,9 +462,9 @@ $('.lotteryclose').click(function () {
   if (win == true) {
     if (stop == true) {
       $('.lottery').hide()
-      $('.video-box').css({'width': '100%', 'height': '100%'})
+      $('.video-box').css({ 'width': '100%', 'height': '100%' })
       if ($('.vote').is(':visible') || $('.mask').is(':visible')) {
-        $('.video-box').css({'width': 1, 'height': 1})
+        $('.video-box').css({ 'width': 1, 'height': 1 })
       }
     }
     $('.lotterynum, .lotterytext').hide()
@@ -472,9 +472,9 @@ $('.lotteryclose').click(function () {
     win = false
   } else {
     $('.lottery').hide()
-    $('.video-box').css({'width': '100%', 'height': '100%'})
+    $('.video-box').css({ 'width': '100%', 'height': '100%' })
     if ($('.vote').is(':visible') || $('.mask').is(':visible')) {
-      $('.video-box').css({'width': 1, 'height': 1})
+      $('.video-box').css({ 'width': 1, 'height': 1 })
     }
   }
 })
@@ -485,9 +485,9 @@ DWLive.onStopLottery = function () {
   if (win == false) {
     setTimeout(function () {
       $('.lottery').hide()
-      $('.video-box').css({'width': '100%', 'height': '100%'})
+      $('.video-box').css({ 'width': '100%', 'height': '100%' })
       if ($('.vote').is(':visible') || $('.mask').is(':visible')) {
-        $('.video-box').css({'width': 1, 'height': 1})
+        $('.video-box').css({ 'width': 1, 'height': 1 })
       }
     }, 2000)
   }
@@ -537,7 +537,7 @@ DWLive.onStartVote = function (data) {
   $('#vote1').show()
   $('#vote2').hide()
   $('.vote-list').empty()
-  $('.video-box').css({'width': 1, 'height': 1})
+  $('.video-box').css({ 'width': 1, 'height': 1 })
 
   $('.vote-option li').click(function () {
     var index = $('.vote-option li').index(this)
@@ -580,9 +580,9 @@ DWLive.onStartVote = function (data) {
       $('.vote').hide()
       $('.vote-option').empty()
       $('.votebtn button').css('opacity', 0.6)
-      $('.video-box').css({'width': '100%', 'height': '100%'})
+      $('.video-box').css({ 'width': '100%', 'height': '100%' })
       if ($('.mask').is(':visible')) {
-        $('.video-box').css({'width': 1, 'height': 1})
+        $('.video-box').css({ 'width': 1, 'height': 1 })
       }
       $('.votebtn').remove()
     }
@@ -591,9 +591,9 @@ DWLive.onStartVote = function (data) {
     $('.vote').hide()
     $('.vote-option, .vote-list').empty()
     $('.votebtn button').css('opacity', 0.6)
-    $('.video-box').css({'width': '100%', 'height': '100%'})
+    $('.video-box').css({ 'width': '100%', 'height': '100%' })
     if ($('.mask').is(':visible')) {
-      $('.video-box').css({'width': 1, 'height': 1})
+      $('.video-box').css({ 'width': 1, 'height': 1 })
     }
     option = ''
     window.voteOptions = []
@@ -606,9 +606,9 @@ DWLive.onStopVote = function () {
   $('.vote').hide()
   $('.vote-option, .vote-list').empty()
   $('.votebtn button').css('opacity', 0.6)
-  $('.video-box').css({'width': '100%', 'height': '100%'})
+  $('.video-box').css({ 'width': '100%', 'height': '100%' })
   if ($('.mask').is(':visible')) {
-    $('.video-box').css({'width': 1, 'height': 1})
+    $('.video-box').css({ 'width': 1, 'height': 1 })
   }
   $('.votebtn').remove()
 }
@@ -824,15 +824,15 @@ DWLive.onVoteResult = function (data) {
   $('#vote2').show()
   $('#vote1').hide()
   $('.votebtn').remove()
-  $('.video-box').css({'width': 1, 'height': 1})
+  $('.video-box').css({ 'width': 1, 'height': 1 })
   option = ''
   window.voteOptions = []
   $('.vote-close').click(function () {
     $('.vote').hide()
     $('.vote-list').empty()
-    $('.video-box').css({'width': '100%', 'height': '100%'})
+    $('.video-box').css({ 'width': '100%', 'height': '100%' })
     if ($('.mask').is(':visible')) {
-      $('.video-box').css({'width': 1, 'height': 1})
+      $('.video-box').css({ 'width': 1, 'height': 1 })
     }
     option = ''
     window.voteOptions = []
@@ -844,9 +844,10 @@ window.on_cc_live_db_flip = function (j) {
   $('#drawPanel').show()
 }
 
-
+// 广播信息添加
 DWLive.onBroadcastMsg = function (data) {
-  var h = '<li class="message message-received msg-admin">' +
+  console.log(`chat_qa`data)
+  var h = '<li class="message message-received msg-admin" id="' + data.id + '">' +
     '<div class="msg-info">' +
     '<span class="user-name ">' +
     '<span class="name-tip">系统消息</span>:' +
@@ -859,6 +860,12 @@ DWLive.onBroadcastMsg = function (data) {
   $('#chat_container').parent().scrollTop($('#chat_container').height())
 }
 
+// 广播信息删除
+DWLive.removeBroadcastMsg = function (data) {
+  console.log(`chat_qa广播信息删除`data)
+  $('#' + data.id).remove();
+}
+
 // 发布问题
 DWLive.onQaPublish = function (data) {
   var $q = $('#questionInfo #' + data.value.questionId).attr('isAnswer', '1')
@@ -866,4 +873,16 @@ DWLive.onQaPublish = function (data) {
   if (!$('.myask').hasClass('askactive')) {
     $q.show()
   }
+}
+
+window.on_cc_live_ban_delete_chat = function (data) {
+  var viewerId = data.viewerId
+  if (viewerId == DWLive.viewerid) {
+    return false
+  }
+  $('#chat_container > li').each(function (index, item) {
+    if ($(item).attr('uid') == viewerId) {
+      $(item).remove()
+    }
+  })
 }

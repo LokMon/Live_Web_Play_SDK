@@ -10,6 +10,7 @@
             $('#callbackPlayer, #livePlayer, #drawPanel, #playbackPanel, #playbackPlayer,#swfId').append(tip);
         },
 
+
         checkFlash: function () {
             var isIE = (navigator.appVersion.indexOf('MSIE') >= 0);
             var hasFlash = true;

@@ -184,34 +184,34 @@ function on_cc_live_broadcast_msg_sync(datas) {
 
 //直播防360浏览器录屏
 window.onresize = function () {
-  //application/vnd.chromium.remoting-viewer 可能为360特有
-  var is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
+    //application/vnd.chromium.remoting-viewer 可能为360特有
+    var is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
 
-  if (isChrome() && is360) {
-    var str = document.querySelector("#playbackPlayer").style.cssText;
-    var width =$("#playbackPlayer").width();
-    var height = $("#playbackPlayer").height()
-    var winW=$(window).width();
-    var winH=$(window).height();
-    function getCssText() {
-        return $("#playbackPlayer").css("margin-top") =="0px"
-            &&$("#playbackPlayer").css("margin-right") =="0px"
-            &&$("#playbackPlayer").css("margin-bottom") =="0px"
-            &&$("#playbackPlayer").css("margin-left") =="0px"
+    if (isChrome() && is360) {
+        var str = document.querySelector("#playbackPlayer").style.cssText;
+        var width = $("#playbackPlayer").width();
+        var height = $("#playbackPlayer").height()
+        var winW = $(window).width();
+        var winH = $(window).height();
+        function getCssText() {
+            return $("#playbackPlayer").css("margin-top") == "0px"
+                && $("#playbackPlayer").css("margin-right") == "0px"
+                && $("#playbackPlayer").css("margin-bottom") == "0px"
+                && $("#playbackPlayer").css("margin-left") == "0px"
 
+        }
+        if (width == winW && height == winH && getCssText()) {
+            $('body *').remove();
+            var fp = '<p style="position: absolute;top: 100px;left: 100px">视频不支持录屏模式下播放<br>请刷新重新观看</p>'
+            $('body').append(fp);
+            return
+        }
+        if (str.search('width') != -1 && str.search('height') != -1 && str.search('!important') != -1) {
+            $('body *').remove();
+            var fp = '<p style="position: absolute;top: 100px;left: 100px">视频不支持录屏模式下播放<br>请刷新重新观看</p>'
+            $('body').append(fp);
+        }
     }
-    if(width == winW && height ==winH &&getCssText()){
-        $('body *').remove();
-        var fp = '<p style="position: absolute;top: 100px;left: 100px">视频不支持录屏模式下播放<br>请刷新重新观看</p>'
-        $('body').append(fp);
-        return
-    }
-    if (str.search('width') != -1 && str.search('height') != -1 && str.search('!important') != -1) {
-      $('body *').remove();
-      var fp = '<p style="position: absolute;top: 100px;left: 100px">视频不支持录屏模式下播放<br>请刷新重新观看</p>'
-      $('body').append(fp);
-    }
-  }
 }
 //播放暂停
 
@@ -221,9 +221,9 @@ $("#btn-play").click(function () {
     $.DW.play();
 });
 $("#btn-clip").click(function (e) {
-  var  base= $.DW.clipVideoImage();
-  $("#clipImage_down").attr("href",base);
-  $("#clipImage_down")[0].click();
+    var base = $.DW.clipVideoImage();
+    $("#clipImage_down").attr("href", base);
+    $("#clipImage_down")[0].click();
 
 })
 $("#btn-play").mouseover(function () {
@@ -348,7 +348,7 @@ scale.prototype = {
         f.btn.style.left = max / 100 * this.initPercent + "px";
         f.pro.style.width = this.initPercent + "%";
 
-        f.e = {percent: 0};
+        f.e = { percent: 0 };
         f.btn.onmousedown = function (e) {
             var x = (e || b.event).clientX;
             var l = this.offsetLeft;
@@ -359,7 +359,7 @@ scale.prototype = {
                 var to = m.min(max, m.max(0, l + (thisX - x)));
                 f.btn.style.left = to + "px";
                 f.pro.style.width = parseInt(to * 100 / max) + "%";
-                var e = {percent: to * 100 / max};
+                var e = { percent: to * 100 / max };
                 f.e = e;
                 f.mousemove(f.e);
                 //此句代码可以除去选中效果
@@ -435,6 +435,7 @@ function playTimerCallback() {
     }
     var progress = $.DW.getPlayerTime() / $.DW.getDuration();
     var buffer = $.DW.getBuffer() / $.DW.getDuration();
+    // console.log(`getPlayerTime`, $.DW.getPlayerTime(), `getBuffer`, $.DW.getBuffer(), `getDuration`, $.DW.getDuration());
     $("#progress").css("width", progress * 100 + "%");
 
     $("#buffer").css("width", buffer * 100 + "%");
@@ -501,4 +502,30 @@ function on_spark_player_end() { // 播放停止
     console.log("播放停止");
     isPlay = false;
     $("#btn-play").css("background", "url(images/newLive/icon-playbar.png) no-repeat -8px -170px");
+}
+
+window.UNLOADMARQUEE = true
+
+function on_cc_swf_loading_completed(id) {
+    if (window.UNLOADMARQUEE) {
+        window.UNLOADMARQUEE = false
+        var marquee = $.trim($('#viewerMarquee').text())
+        if (marquee) {
+            try {
+                var mj = JSON.parse(marquee)
+
+                var isHttps = window.location.protocol === 'https:'
+                // 当前页面如果不是https，跑马灯突破地址为https协议，则强制将图片协议改为http
+                if (!isHttps && mj && mj.image && mj.image.image_url && mj.image.image_url.indexOf('https:') >= 0) {
+                    var u = mj.image.image_url
+                    mj.image.image_url = u.replace(/https:/g, 'http:')
+                }
+
+                setTimeout(function () {
+                    $.DW.showMarqueeDoc(JSON.stringify(mj))
+                }, 1000)
+            } catch (e) {
+            }
+        }
+    }
 }

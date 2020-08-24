@@ -388,6 +388,15 @@ var userAgent = navigator.userAgent.toLowerCase()
 if (userAgent.indexOf('safari') > 0 && userAgent.indexOf('chrome') < 0) {
   $('.select-span').css('vertical-align', 0)
 }
+
+if ($(".votediv").length > 0) {
+  $(".votediv").draggable({
+    containment: "parent",
+    cursor: "move",
+    handle: ".vote-icon, .vote-icon2",
+    zIndex: 100
+  });
+}
 // var a = document.createElement("a")
 // a.href = base
 // a.setAttribute('download', 'clip-image.png')

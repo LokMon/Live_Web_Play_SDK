@@ -1,8 +1,7 @@
 $(function () {
-
   // 开始直播
   DWLive.onLiveStart = function (j) {
-    // console.log(j);
+    console.log(j);
   }
 
   window._onStart = function () {
@@ -39,13 +38,19 @@ $(function () {
     console.log(j)
   }
 
-  // 系统消息
+  // 广播信息添加
   DWLive.onBroadcastMsg = function (data) {
-    var h = '<li class="msg-admin">系统消息：' + data.content + ' </li>'
+    var h = '<li class="msg-admin" id="' + data.id + '">系统消息：' + data.content + ' </li>'
     $('#chat-list').append(h)
 
     $('#chat-list').parent().scrollTop($('#chat-list').height())
   }
+
+
+  // 广播信息删除
+  DWLive.removeBroadcastMsg = function (data) {
+    $('#' + data.id).remove();
+  };
 
   // 设置音量
   $('.set-sound').click(function () {
@@ -166,7 +171,7 @@ $(function () {
     }
   }
   DWLive.onBanChat = function (j) {
-    console.log('您已被禁言' + j)
+    console.log('您已被禁言' + JSON.stringify(j))
   }
   DWLive.onUnBanChat = function (j) {
     console.log('您已解禁' + j)
@@ -354,7 +359,7 @@ $(function () {
 
   function tips(chatX, chatY, msg) {
     $('#input-tips').find('p').text(msg)
-    $('#input-tips').css({'left': chatX, 'top': (chatY - 42)}).stop(1, 1).fadeIn(200).delay(1500).fadeOut(200)
+    $('#input-tips').css({ 'left': chatX, 'top': (chatY - 42) }).stop(1, 1).fadeIn(200).delay(1500).fadeOut(200)
   }
 
   //对老师说
@@ -400,7 +405,7 @@ $(function () {
     while (n--) {
       u8arr[n] = bstr.charCodeAt(n)
     }
-    return new Blob([u8arr], {type: mime})
+    return new Blob([u8arr], { type: mime })
   }
 
   // 聊天页面浮出框
